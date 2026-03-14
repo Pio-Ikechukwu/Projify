@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Pio Ikechukwu",
+      "email": "pioikechukwu@gmail.com",
+      "avatar": "/images/profile.png",
+      "tasks": [
+        {
+          "taskId": 1,
+          "title": "Clean My Room",
+          "date": "2025-12-10",
+          "priority": "Medium",
+          "description": "Organize desk, fold clothes, sweep, and take out trash.",
+          "image": "/images/cleaning.png"
+        },
+        {
+          "taskId": 2,
+          "title": "Go to Church",
+          "date": "2025-12-14",
+          "priority": "High",
+          "description": "Attend Sunday service and meet with the youth group.",
+          "image": "/images/church.png"
+        },
+        {
+          "taskId": 3,
+          "title": "Visit Grandma",
+          "date": "2025-12-20",
+          "priority": "High",
+          "description": "Bring her favorite snacks and spend the afternoon together.",
+          "image": "/images/grandma.png"
+        }
+      ]
+    },
+    {
+      "id": 2
+    }
+  ]
+}
