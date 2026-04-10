@@ -24,6 +24,7 @@
     "koa-ejs": "^4.3.0",
     "koa-json": "^2.0.2",
     "koa-router": "^14.0.0",
+    "pg": "^8.20.0",
     "sequelize": "^6.37.8",
     "sequelize-cli": "^6.6.5"
   },
