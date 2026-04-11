@@ -64,13 +64,20 @@ const projectGuard = async (ctx, next) => {
 const memberGuard = async (ctx, next) => {
   const { assignedToID } = ctx.request.body;
   if (assignedToID) {
-    const member = await ProjectMember.findOne({
-      where: { projectId: Number(ctx.params.projectId), userId: assignedToID },
-    });
-    if (!member) {
-      ctx.status = 400;
-      ctx.body = { error: "assignedToID must be a member of this project" };
-      return;
+    const project = ctx.state.project;
+    const isOwner = Number(assignedToID) === Number(project.ownerId);
+    if (!isOwner) {
+      const member = await ProjectMember.findOne({
+        where: {
+          projectId: Number(ctx.params.projectId),
+          userId: assignedToID,
+        },
+      });
+      if (!member) {
+        ctx.status = 400;
+        ctx.body = { error: "assignedToID must be a member of this project" };
+        return;
+      }
     }
   }
   await next();
