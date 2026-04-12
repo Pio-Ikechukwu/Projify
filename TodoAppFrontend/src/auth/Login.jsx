@@ -105,9 +105,9 @@ const Login = () => {
                   className={`w-full pl-12 pr-4 py-4 border rounded-lg text-sm placeholder:text-[#999999] ${errors.email ? "border-red-400" : "border-gray-200"}`}
                 />
               </div>
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.email || ""}
+              </p>
             </div>
 
             <div>
@@ -122,9 +122,9 @@ const Login = () => {
                   className={`w-full pl-12 pr-4 py-4 border rounded-lg text-sm placeholder:text-[#999999] ${errors.password ? "border-red-400" : "border-gray-200"}`}
                 />
               </div>
-              {errors.password && (
-                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.password || ""}
+              </p>
             </div>
 
             <div className="flex items-center">

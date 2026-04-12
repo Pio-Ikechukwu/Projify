@@ -1,0 +1,35 @@
+steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        working-directory: mytodobackend
+        run: npm install
+
+      - name: Run migrations
+        working-directory: mytodobackend
+        run: npx sequelize-cli db:migrate
+        env:
+          NODE_ENV: test
+          DB_USERNAME: postgres
+          DB_PASSWORD: piopostgres
+          DB_NAME: projify
+          DB_NAME_TEST: projify_test
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+
+      - name: Run tests
+        working-directory: mytodobackend
+        env:
+          NODE_ENV: test
+          DB_USERNAME: postgres
+          DB_PASSWORD: piopostgres
+          DB_NAME: projify
+          DB_NAME_TEST: projify_test
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+        run: npm test

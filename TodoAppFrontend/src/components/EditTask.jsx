@@ -102,106 +102,110 @@ const EditTask = ({ projectId, task, closeForm, onTaskUpdated }) => {
 
   return (
     <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-[100]">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-lg p-8">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-xl font-bold text-gray-800">Edit Task</h1>
-          <button onClick={closeForm}>
-            <X className="w-5 h-5 text-gray-500 hover:text-red-700 cursor-pointer" />
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-bold mb-1">Title</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-                setErrors({ ...errors, title: "" });
-              }}
-              className={`w-full p-3 border rounded-md text-gray-800 ${errors.title ? "border-red-400" : "border-gray-300"}`}
-            />
-            {errors.title && (
-              <p className="text-red-500 text-xs mt-1">{errors.title}</p>
-            )}
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+        <div className="p-8 overflow-y-auto max-h-[90vh]">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-xl font-bold text-gray-800">Edit Task</h1>
+            <button onClick={closeForm}>
+              <X className="w-5 h-5 text-gray-500 hover:text-red-700 cursor-pointer" />
+            </button>
           </div>
 
-          <div>
-            <label className="block text-sm font-bold mb-1">
-              Date To Be Completed
-            </label>
-            <input
-              type="date"
-              value={dueDate}
-              onChange={(e) => {
-                setDueDate(e.target.value);
-                setErrors({ ...errors, dueDate: "" });
-              }}
-              className={`w-full p-3 border rounded-md ${errors.dueDate ? "border-red-400" : "border-gray-300"}`}
-            />
-            {errors.dueDate && (
-              <p className="text-red-500 text-xs mt-1">{errors.dueDate}</p>
-            )}
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-bold mb-1">Status</label>
-              <select
-                value={statusId}
-                onChange={(e) => setStatusId(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md text-gray-800"
-              >
-                {statuses.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-bold mb-1">Priority</label>
-              <select
-                value={priorityId}
-                onChange={(e) => setPriorityId(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md text-gray-800"
-              >
-                {priorities.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-bold mb-1">Description</label>
-            <div className="h-36 mb-12">
-              <ReactQuill
-                theme="snow"
-                value={description}
-                onChange={(val) => {
-                  setDescription(val);
-                  setErrors({ ...errors, description: "" });
+              <label className="block text-sm font-bold mb-1">Title</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                  setErrors({ ...errors, title: "" });
                 }}
-                className={`h-28 ${errors.description ? "border border-red-400 rounded" : ""}`}
+                className={`w-full p-3 border rounded-md text-gray-800 ${errors.title ? "border-red-400" : "border-gray-300"}`}
               />
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.title || ""}
+              </p>
             </div>
-            {errors.description && (
-              <p className="text-red-500 text-xs mt-1">{errors.description}</p>
-            )}
-          </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className={`w-full py-3 bg-[#ff6767] text-white font-bold rounded-lg hover:bg-[#ff5555] cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
-          >
-            {loading ? "Saving..." : "Update Task"}
-          </button>
-        </form>
+            <div>
+              <label className="block text-sm font-bold mb-1">
+                Date To Be Completed
+              </label>
+              <input
+                type="date"
+                value={dueDate}
+                onChange={(e) => {
+                  setDueDate(e.target.value);
+                  setErrors({ ...errors, dueDate: "" });
+                }}
+                className={`w-full p-3 border rounded-md ${errors.dueDate ? "border-red-400" : "border-gray-300"}`}
+              />
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.dueDate || ""}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-bold mb-1">Status</label>
+                <select
+                  value={statusId}
+                  onChange={(e) => setStatusId(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md text-gray-800"
+                >
+                  {statuses.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-bold mb-1">Priority</label>
+                <select
+                  value={priorityId}
+                  onChange={(e) => setPriorityId(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md text-gray-800"
+                >
+                  {priorities.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold mb-1">
+                Description
+              </label>
+              <div className="h-36 mb-12">
+                <ReactQuill
+                  theme="snow"
+                  value={description}
+                  onChange={(val) => {
+                    setDescription(val);
+                    setErrors({ ...errors, description: "" });
+                  }}
+                  className={`h-28 ${errors.description ? "border border-red-400 rounded" : ""}`}
+                />
+              </div>
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.description || ""}
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className={`w-full py-3 bg-[#ff6767] text-white font-bold rounded-lg hover:bg-[#ff5555] cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            >
+              {loading ? "Saving..." : "Update Task"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

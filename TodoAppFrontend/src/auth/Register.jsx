@@ -123,9 +123,9 @@ const Register = () => {
                 value={formData.firstName}
                 onChange={handleChange}
               />
-              {errors.firstName && (
-                <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.firstName || ""}
+              </p>
             </div>
 
             <div className="relative">
@@ -138,9 +138,9 @@ const Register = () => {
                 value={formData.lastName}
                 onChange={handleChange}
               />
-              {errors.lastName && (
-                <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.lastName || ""}
+              </p>
             </div>
 
             <div className="relative">
@@ -153,9 +153,9 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.email || ""}
+              </p>
             </div>
 
             <div className="relative">
@@ -168,9 +168,9 @@ const Register = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
-              {errors.password && (
-                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.password || ""}
+              </p>
             </div>
 
             <div className="relative">
@@ -183,11 +183,9 @@ const Register = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
               />
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.confirmPassword}
-                </p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.confirmPassword || ""}
+              </p>
             </div>
 
             <div>
@@ -204,9 +202,9 @@ const Register = () => {
                   I agree to all terms
                 </label>
               </div>
-              {errors.terms && (
-                <p className="text-red-500 text-xs mt-1">{errors.terms}</p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.terms || ""}
+              </p>
             </div>
 
             <button

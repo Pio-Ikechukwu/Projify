@@ -78,9 +78,9 @@ const AddProjectForm = ({ closeForm, onProjectCreated }) => {
             }}
             className={`w-full p-3 border rounded text-gray-800 ${errors.projectName ? "border-red-400" : "border-gray-300"}`}
           />
-          {errors.projectName && (
-            <p className="text-red-500 text-xs mt-1">{errors.projectName}</p>
-          )}
+          <p className="text-red-500 text-xs mt-1 h-4">
+            {errors.projectName || ""}
+          </p>
         </div>
 
         <div>
@@ -93,9 +93,9 @@ const AddProjectForm = ({ closeForm, onProjectCreated }) => {
             }}
             className={`w-full p-3 border rounded text-gray-800 ${errors.description ? "border-red-400" : "border-gray-300"}`}
           />
-          {errors.description && (
-            <p className="text-red-500 text-xs mt-1">{errors.description}</p>
-          )}
+          <p className="text-red-500 text-xs mt-1 h-4">
+            {errors.description || ""}
+          </p>
         </div>
 
         <button
