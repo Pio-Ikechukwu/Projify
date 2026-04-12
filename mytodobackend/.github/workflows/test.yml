@@ -1,0 +1,59 @@
+name: Run Backend Tests
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: piopostgres
+          POSTGRES_DB: projify_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run migrations
+        run: npx sequelize-cli db:migrate
+        env:
+          NODE_ENV: test
+          DB_USERNAME: postgres
+          DB_PASSWORD: piopostgres
+          DB_NAME: projify
+          DB_NAME_TEST: projify_test
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+
+      - name: Run tests
+        env:
+          NODE_ENV: test
+          DB_USERNAME: postgres
+          DB_PASSWORD: piopostgres
+          DB_NAME: projify
+          DB_NAME_TEST: projify_test
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+        run: npm test
