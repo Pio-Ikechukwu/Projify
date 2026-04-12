@@ -3,9 +3,16 @@
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "start": "nodemon app.js",
-    "test": "cross-env NODE_ENV=test mocha tests/**/*.test.js --timeout 10000"
+    "test": "cross-env NODE_ENV=test mocha tests/**/*.test.js --timeout 10000",
+    "db:create": "npx sequelize-cli db:create && cross-env NODE_ENV=test npx sequelize-cli db:create",
+    "db:migrate": "npx sequelize-cli db:migrate && cross-env NODE_ENV=test npx sequelize-cli db:migrate",
+    "db:drop": "npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:drop",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +20,6 @@
   "dependencies": {
     "@koa/cors": "^5.0.0",
     "bcrypt": "^6.0.0",
-    "cross-env": "^10.1.0",
     "dotenv": "^17.3.1",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
@@ -22,11 +28,14 @@
     "koa-ejs": "^4.3.0",
     "koa-json": "^2.0.2",
     "koa-router": "^14.0.0",
+    "pg": "^8.20.0",
     "sequelize": "^6.37.8",
     "sequelize-cli": "^6.6.5"
   },
   "devDependencies": {
     "chai": "^6.2.2",
+    "cross-env": "^10.1.0",
+    "mocha": "^11.7.5",
     "nodemon": "^3.1.14",
     "supertest": "^7.2.2"
   }

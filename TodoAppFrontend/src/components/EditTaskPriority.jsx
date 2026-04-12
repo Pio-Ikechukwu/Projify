@@ -78,7 +78,7 @@ const EditTaskPriority = ({
             }}
             className={`w-1/2 p-2 border rounded-md text-gray-800 ${error ? "border-red-400" : "border-gray-300"}`}
           />
-          {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+          <p className="text-red-500 text-xs mt-1 h-4">{error || ""}</p>{" "}
         </div>
         <div className="flex gap-4">
           <button

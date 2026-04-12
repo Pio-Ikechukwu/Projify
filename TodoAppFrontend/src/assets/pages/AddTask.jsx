@@ -133,9 +133,9 @@ const AddTask = ({ projectId, closeForm, onTaskCreated }) => {
               }}
               className={`w-full p-3 bg-gray-50 border rounded-md ${errors.title ? "border-red-400" : "border-gray-400"}`}
             />
-            {errors.title && (
-              <p className="text-red-500 text-xs mt-1">{errors.title}</p>
-            )}
+            <p className="text-red-500 text-xs mt-1 h-4">
+              {errors.title || ""}
+            </p>
           </div>
 
           {/* Date */}
@@ -152,9 +152,9 @@ const AddTask = ({ projectId, closeForm, onTaskCreated }) => {
               }}
               className={`w-full p-3 bg-gray-50 border rounded-md ${errors.dueDate ? "border-red-400" : "border-gray-400"}`}
             />
-            {errors.dueDate && (
-              <p className="text-red-500 text-xs mt-1">{errors.dueDate}</p>
-            )}
+            <p className="text-red-500 text-xs mt-1 h-4">
+              {errors.dueDate || ""}
+            </p>
           </div>
 
           {/* Status + Priority */}
@@ -207,11 +207,9 @@ const AddTask = ({ projectId, closeForm, onTaskCreated }) => {
                   placeholder="Start writing here..."
                 />
               </div>
-              {errors.description && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors.description}
-                </p>
-              )}
+              <p className="text-red-500 text-xs mt-1 h-4">
+                {errors.description || ""}
+              </p>
             </div>
 
             <div>

@@ -78,7 +78,7 @@ const InviteModal = ({ projectId, closeInviteModal }) => {
             className={`w-full p-2 border rounded-md text-gray-800 ${error ? "border-red-400" : "border-gray-300"}`}
             placeholder="Enter email address"
           />
-          {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+          <p className="text-red-500 text-xs mt-1 h-4">{error || ""}</p>{" "}
         </div>
         <button
           onClick={handleSubmit}

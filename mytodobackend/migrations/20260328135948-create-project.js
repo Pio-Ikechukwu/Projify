@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       ownerId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: "users",
@@ -23,7 +23,6 @@ module.exports = {
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: false,
       },
       createdAt: {
         defaultValue: Sequelize.fn("NOW"),
@@ -32,6 +31,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("projects");
   },
 };
